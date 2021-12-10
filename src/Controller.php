@@ -45,10 +45,10 @@ class Controller
         $output .= "<th>Name</th><th>Lastname</th><th>Surname</th><th>Phone</th></tr>";
         foreach ($connection->query("SELECT * FROM oasiao_agenda_db.public.contacts") as $contact) {
             $output .= "<tr>";
-            $output .= '<th>' . $contact['NAME'] . '</th>';
-            $output .= '<th>' . $contact['LASTNAME'] . '</th>';
-            $output .= '<th>' . $contact['SURNAME'] . '</th>';
-            $output .= '<th>' . $contact['PHONE'] . '</th>';
+            $output .= '<th>' . $contact['Name'] . '</th>';
+            $output .= '<th>' . $contact['Lastname'] . '</th>';
+            $output .= '<th>' . $contact['Surname'] . '</th>';
+            $output .= '<th>' . $contact['Phone'] . '</th>';
             $output .= "</tr>";
         }
         $output .= "</table>";
