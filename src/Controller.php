@@ -18,14 +18,14 @@ class Controller
             /**
              * Recorremos la base de datos para mirar si el contacto existe
              */
-            foreach ($connection->pg_query("SELECT PHONE FROM oasiao_agenda_db.contacts") as $contact) {
+            foreach ($connection->pg_query("SELECT PHONE FROM oasiao_agenda_db.public.contacts") as $contact) {
                 if ($contact['PHONE'] === $phone) {
                     $existe = true; //si coincide alguno, entonces retornamos true
                     break;
                 }
             }
 
-            $query = "INSERT INTO oasiao_agenda_db.contacts (NAME, LASTNAME, SURNAME, PHONE) VALUES ('$name','$lastname','$surname','$phone')";
+            $query = "INSERT INTO oasiao_agenda_db.public.contacts (NAME, LASTNAME, SURNAME, PHONE) VALUES ('$name','$lastname','$surname','$phone')";
             if ($existe === false) {
                 $connection->exec($query);
                 return true;
