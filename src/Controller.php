@@ -18,14 +18,14 @@ class Controller
             /**
              * Recorremos la base de datos para mirar si el contacto existe
              */
-            foreach ($connection->pg_query("SELECT PHONE FROM oasiao_agenda_db.public.contacts") as $contact) {
-                if ($contact['PHONE'] === $phone) {
+            foreach ($connection->pg_query("SELECT Phone FROM oasiao_agenda_db.public.contacts") as $contact) {
+                if ($contact['Phone'] === $phone) {
                     $existe = true; //si coincide alguno, entonces retornamos true
                     break;
                 }
             }
 
-            $query = "INSERT INTO oasiao_agenda_db.public.contacts (NAME, LASTNAME, SURNAME, PHONE) VALUES ('$name','$lastname','$surname','$phone')";
+            $query = "INSERT INTO oasiao_agenda_db.public.contacts (Name, Lastname, Surname, Phone) VALUES ('$name','$lastname','$surname','$phone')";
             if ($existe === false) {
                 $connection->exec($query);
                 return true;
@@ -62,14 +62,14 @@ class Controller
 
             $existe = false;
 
-            foreach ($connection->query("SELECT * FROM oasiao_agenda_db.contacts") as $contact) {
-                if ($contact['PHONE'] === $phone) {
+            foreach ($connection->query("SELECT * FROM oasiao_agenda_db.public.contacts") as $contact) {
+                if ($contact['Phone'] === $phone) {
                     $existe = true;
                     break;
                 }
             }
 
-            $query = "UPDATE oasiao_agenda_db.contacts SET NAME = '$name', LASTNAME = '$lastname', SURNAME = '$surname', PHONE = '$phone' WHERE PHONE = '$phone'";
+            $query = "UPDATE oasiao_agenda_db.public.contacts SET Name = '$name', Lastname = '$lastname', Surname = '$surname', Phone = '$phone' WHERE Phone = '$phone'";
             $connection->exec($query);
 
 
@@ -92,14 +92,14 @@ class Controller
         try {
             $existe = false;
 
-            foreach ($connection->query("SELECT PHONE FROM oasiao_agenda_db.contacts") as $contact) {
+            foreach ($connection->query("SELECT Phone FROM oasiao_agenda_db.public.contacts") as $contact) {
                 if ($contact['PHONE'] === $phone) {
                     $existe = true;
                     break;
                 }
             }
 
-            $query = "DELETE FROM oasiao_agenda_db.contacts WHERE PHONE = '$phone'";
+            $query = "DELETE FROM oasiao_agenda_db.contacts WHERE Phone = '$phone'";
 
 
             if ($existe === true) {
