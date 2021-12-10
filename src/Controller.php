@@ -13,17 +13,17 @@ class Controller
     public function create($name,$lastname,$surname,$phone){
         $connection = $this->getConnection();
         try {
-            $existe = false;
+            /*$existe = false;
 
             /**
              * Recorremos la base de datos para mirar si el contacto existe
              */
-            foreach ($connection->query("SELECT Phone FROM contacts") as $contact) {
+            /*foreach ($connection->query("SELECT Phone FROM contacts") as $contact) {
                 if ($contact['Phone'] === $phone) {
                     $existe = true; //si coincide alguno, entonces retornamos true
                     break;
                 }
-            }
+            }*/
 
             $query = "INSERT INTO oasiao_agenda_db.public.contacts (Name, Surname, Lastname, Phone) VALUES ('$name','$surname','$lastname','$phone');";
             //if ($existe === false) {
