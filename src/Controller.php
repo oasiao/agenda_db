@@ -43,7 +43,7 @@ class Controller
         $connection = $this->getConnection();
         $output = "<table border 1px solid style='margin: 10vh;'><tr>";
         $output .= "<th>Name</th><th>Lastname</th><th>Surname</th><th>Phone</th></tr>";
-        foreach ($connection->query("SELECT * FROM oasiao_agenda_db.contacts") as $contact) {
+        foreach ($connection->query("SELECT * FROM oasiao_agenda_db.public.contacts") as $contact) {
             $output .= "<tr>";
             $output .= '<th>' . $contact['NAME'] . '</th>';
             $output .= '<th>' . $contact['LASTNAME'] . '</th>';
