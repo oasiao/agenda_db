@@ -7,7 +7,7 @@ class Controller
 
     private function getConnection(){
         $connection = new Connection();
-        return $connection->connection();
+        return $connection->getConnection();
     }
 
     public function create($name,$lastname,$surname,$phone){
