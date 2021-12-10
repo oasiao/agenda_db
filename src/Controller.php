@@ -58,8 +58,6 @@ class Controller
     public function update($name,$lastname,$surname,$phone){
         $connection = $this->getConnection();
         try {
-
-
             $existe = false;
 
             foreach ($connection->query("SELECT * FROM oasiao_agenda_db.public.contacts") as $contact) {
@@ -69,7 +67,7 @@ class Controller
                 }
             }
 
-            $query = "UPDATE oasiao_agenda_db.public.contacts SET Name = '$name', Lastname = '$lastname', Surname = '$surname', Phone = '$phone' WHERE Phone = '$phone'";
+            $query = "UPDATE oasiao_agenda_db.public.contacts SET \"Name\" = '$name', \"Lastname\" = '$lastname', \"Surname\" = '$surname', \"Phone\" = '$phone' WHERE \"Phone\" = '$phone'";
             $connection->exec($query);
 
 
