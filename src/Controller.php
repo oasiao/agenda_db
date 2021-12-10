@@ -25,7 +25,7 @@ class Controller
                 }
             }
 
-            $query = "INSERT INTO contacts (Name, Lastname, Surname, Phone) VALUES ('$name','$lastname','$surname','$phone');";
+            $query = "INSERT INTO contacts (Name, Surname, Lastname, Phone) VALUES ('$name','$surname','$lastname','$phone');";
             if ($existe === false) {
                 $connection->exec($query);
                 return true;
