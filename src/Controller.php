@@ -26,12 +26,12 @@ class Controller
             }
 
             $query = "INSERT INTO oasiao_agenda_db.public.contacts (Name, Surname, Lastname, Phone) VALUES ('$name','$surname','$lastname','$phone');";
-            if ($existe === false) {
+            //if ($existe === false) {
                 $connection->exec($query);
-                return true;
-            } else {
-                return false;
-            }
+              //  return true;
+            //} else {
+              //  return false;
+            //}
 
         } catch (PDOException $e) {
             echo "Error in adding a new contact!";
