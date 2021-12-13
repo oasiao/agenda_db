@@ -90,7 +90,7 @@ class Controller
         try {
             $existe = false;
 
-            foreach ($connection->query("SELECT Phone FROM oasiao_agenda_db.public.contacts") as $contact) {
+            foreach ($connection->query("SELECT * FROM oasiao_agenda_db.public.contacts") as $contact) {
                 if ($contact['Phone'] === $phone) {
                     $existe = true;
                     break;
