@@ -48,6 +48,7 @@ class Controller
     }
 
     public function read(){
+        /*EN ESTA FUNCIÓN, NO HACE FALTA PREPARAR LA QUERY PORQUE NO LE PASAMOS PARÁMETROS.*/
         $connection = $this->getConnection();
         $output = "<table border 1px solid style='margin: 10vh;'><tr>";
         $output .= "<th>Name</th><th>Lastname</th><th>Surname</th><th>Phone</th></tr>";
@@ -78,14 +79,44 @@ class Controller
                 }
             }
 
+            $query = $connection->prepare("INSERT INTO oasiao_agenda_db.public.contacts 
+                     (\"Name\", \"Surname\", \"Lastname\", \"Phone\") 
+                    VALUES (:name,:surname,:lastname,:phone);");
+
+
+                $query->execute([
+                    ':name' => $name,
+                    ':surname' => $surname,
+                    ':lastname'=> $lastname,
+                    ':phone' => $phone
+                ]);
+
+
             if ($existeTelefono){
-                $connection->exec("UPDATE oasiao_agenda_db.public.contacts SET \"Name\" = '$name', \"Lastname\" = '$lastname', \"Surname\" = '$surname', \"Phone\" = '$phone' WHERE \"Phone\" = '$phone'");
+                $query = $connection->prepare("UPDATE oasiao_agenda_db.public.contacts SET 
+                                            \"Name\" = :name, \"Lastname\" = :lastname, \"Surname\" = :surname, 
+                                            \"Phone\" = :phone WHERE \"Phone\" = :phone");
+
+                $query->execute([
+                    ':name' => $name,
+                    ':surname' => $surname,
+                    ':lastname'=> $lastname,
+                    ':phone' => $phone
+                ]);
+
                 return true; //si no existe, enviamos un mensaje de "Bien hecho!"
             }
             else if($existeNombre){
-                $connection->exec("UPDATE oasiao_agenda_db.public.contacts SET \"Name\" = '$name', \"Lastname\" = '$lastname', 
-                                            \"Surname\" = '$surname', \"Phone\" = '$phone' WHERE \"Name\" = '$name' 
-                                            and \"Surname\" = '$surname' and \"Lastname\" = '$lastname'");
+                $query = $connection->prepare("UPDATE oasiao_agenda_db.public.contacts SET \"Name\" = :name, \"Lastname\" = :lastname, 
+                                            \"Surname\" = :surname, \"Phone\" = :phone WHERE \"Name\" = :name 
+                                            and \"Surname\" = :surname and \"Lastname\" = :lastname");
+
+                $query->execute([
+                    ':name' => $name,
+                    ':surname' => $surname,
+                    ':lastname'=> $lastname,
+                    ':phone' => $phone
+                ]);
                 return true;
             }
             else{
@@ -111,11 +142,13 @@ class Controller
                 }
             }
 
-            $query = "DELETE FROM oasiao_agenda_db.public.contacts WHERE \"Phone\" = '$phone'";
+            $query = $connection->prepare("DELETE FROM oasiao_agenda_db.public.contacts WHERE \"Phone\" = :phone");
 
 
             if ($existe === true) {
-                $connection->exec($query);
+                $query->execute([
+                    ':phone' => $phone
+            ]);
                 return true;
             } else {
                 return false;
