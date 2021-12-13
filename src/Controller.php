@@ -97,7 +97,7 @@ class Controller
                 }
             }
 
-            $query = "DELETE FROM oasiao_agenda_db.contacts WHERE Phone = '$phone'";
+            $query = "DELETE FROM oasiao_agenda_db.public.contacts WHERE Phone = '$phone'";
 
 
             if ($existe === true) {
