@@ -91,13 +91,13 @@ class Controller
             $existe = false;
 
             foreach ($connection->query("SELECT Phone FROM oasiao_agenda_db.public.contacts") as $contact) {
-                if ($contact['PHONE'] === $phone) {
+                if ($contact['Phone'] === $phone) {
                     $existe = true;
                     break;
                 }
             }
 
-            $query = "DELETE FROM oasiao_agenda_db.public.contacts WHERE Phone = '$phone'";
+            $query = "DELETE FROM oasiao_agenda_db.public.contacts WHERE \"Phone\" = '$phone'";
 
 
             if ($existe === true) {
