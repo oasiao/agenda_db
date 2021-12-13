@@ -58,21 +58,27 @@ class Controller
     public function update($name,$lastname,$surname,$phone){
         $connection = $this->getConnection();
         try {
-            $existe = false;
+            $existeTelefono = false;
+            $existeNombre = false;
 
             foreach ($connection->query("SELECT * FROM oasiao_agenda_db.public.contacts") as $contact) {
                 if ($contact['Phone'] === $phone) {
-                    $existe = true;
+                    $existeTelefono = true;
                     break;
+                }else if($contact['Name'] === $name && $contact['Lastname']===$lastname && $contact['Surname'] === $surname){
+                    $existeNombre = true;
                 }
             }
 
-            $query = "UPDATE oasiao_agenda_db.public.contacts SET \"Name\" = '$name', \"Lastname\" = '$lastname', \"Surname\" = '$surname', \"Phone\" = '$phone' WHERE \"Phone\" = '$phone'";
-            $connection->exec($query);
-
-
-            if ($existe){
+            if ($existeTelefono){
+                $connection->exec("UPDATE oasiao_agenda_db.public.contacts SET \"Name\" = '$name', \"Lastname\" = '$lastname', \"Surname\" = '$surname', \"Phone\" = '$phone' WHERE \"Phone\" = '$phone'");
                 return true; //si no existe, enviamos un mensaje de "Bien hecho!"
+            }
+            else if($existeNombre){
+                $connection->exec("UPDATE oasiao_agenda_db.public.contacts SET \"Name\" = '$name', \"Lastname\" = '$lastname', 
+                                            \"Surname\" = '$surname', \"Phone\" = '$phone' WHERE \"Name\" = '$name' 
+                                            and \"Surname\" = '$surname' and \"Lastname\" = '$lastname'");
+                return true;
             }
             else{
                 return false; //si existe, nos mostrará un mensaje de error
