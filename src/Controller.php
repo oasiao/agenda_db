@@ -79,19 +79,6 @@ class Controller
                 }
             }
 
-            $query = $connection->prepare("INSERT INTO oasiao_agenda_db.public.contacts 
-                     (\"Name\", \"Surname\", \"Lastname\", \"Phone\") 
-                    VALUES (:name,:surname,:lastname,:phone);");
-
-
-                $query->execute([
-                    ':name' => $name,
-                    ':surname' => $surname,
-                    ':lastname'=> $lastname,
-                    ':phone' => $phone
-                ]);
-
-
             if ($existeTelefono){
                 $query = $connection->prepare("UPDATE oasiao_agenda_db.public.contacts SET 
                                             \"Name\" = :name, \"Lastname\" = :lastname, \"Surname\" = :surname, 
