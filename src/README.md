@@ -9,4 +9,8 @@ la base de datos.
 Se añadirá un contacto si el número de teléfono no coincide con ningún otro.
 
 ## UPDATE CONTACT
-El update, mirará el número de teléfono
+El update se hará si coincide con: el name, surname y lastname, 
+o con el número de teléfono.
+
+## DELETE CONTACT
+Deberás escribir el número de teléfono del contacto que quieras eliminar.
