@@ -13,5 +13,8 @@ de la base de datos.
 El update se hará si coincide con: el name, surname y lastname, 
 o con el número de teléfono.
 
+Si no coincide con ningún contacto, preguntará al usuario si quiere registrar el
+contacto, si quiere volver a la lista de contactos o si quiere volver a la página del update.
+
 ## DELETE CONTACT
 Deberás escribir el número de teléfono del contacto que quieras eliminar.
