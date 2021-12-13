@@ -12,7 +12,7 @@ class Connection{
             return new PDO("pgsql:host=$this->host;port=5432;dbname=$this->dbname;user=$this->username;password=$this->password;");
         }
         catch (PDOException $e){
-            echo "ERROR EN LA CONEXIÓN!";
+            echo "ERROR EN LA CONEXIÓN!" . $e->getMessage();
             die();
         }
     }

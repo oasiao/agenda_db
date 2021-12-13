@@ -25,9 +25,17 @@ class Controller
                 }
             }
 
-            $query = "INSERT INTO oasiao_agenda_db.public.contacts (\"Name\", \"Surname\", \"Lastname\", \"Phone\") VALUES ('$name','$surname','$lastname','$phone');";
+            $query = $connection->prepare("INSERT INTO oasiao_agenda_db.public.contacts 
+                     (\"Name\", \"Surname\", \"Lastname\", \"Phone\") 
+                    VALUES (:name,:surname,:lastname,:phone);");
+
             if (!$existe) {
-                $connection->exec($query);
+                $query->execute([
+                    ':name' => $name,
+                    ':surname' => $surname,
+                    ':lastname'=> $lastname,
+                    ':phone' => $phone
+                    ]);
                 return true;
             } else {
                 return false;

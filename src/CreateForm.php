@@ -45,7 +45,7 @@ if (isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['surname'
         else {
 
             /*Si no cumple con los requerimientos anteriores, entonces te dirá que lo vuelvas a intentar.*/
-            echo "Try again!";
+            echo "Este contacto ya existe. Prueba de nuevo";
             displayForm();
         }
 

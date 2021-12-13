@@ -6,7 +6,8 @@ Este link te mostrará los contactos que se encuentren en
 la base de datos.
 
 ## ADD CONTACT
-Se añadirá un contacto si el número de teléfono no coincide con ningún otro.
+Se añadirá el contacto si el número de teléfono no coincide con ninguno 
+de la base de datos.
 
 ## UPDATE CONTACT
 El update se hará si coincide con: el name, surname y lastname, 
